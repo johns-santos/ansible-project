@@ -1,0 +1,6 @@
+---
+  - hosts: app1, app2, lb1
+    tasks:
+      - name: shutdown
+        command: sudo /sbin/shutdown -h now
+   

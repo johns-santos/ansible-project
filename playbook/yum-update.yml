@@ -1,0 +1,11 @@
+# yum-update.yml
+
+---
+  - hosts: webservers:loadbalancers
+    # need to become root run yum
+    become: true
+    tasks:
+      - name: Updating yum packages
+        yum:
+          name: '*'
+          state: latest
