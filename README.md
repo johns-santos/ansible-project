@@ -28,29 +28,21 @@ Become familiar with ansible configuration and playbooks.
 
 5. Create a ansible INVENTORY file (this is a static list, can be dynamic)
        1. Default location of file  = /etc/ansible/hosts (can use "-i" to use another.
-       1. FORMAT is as followed:
-           *   [webserver]
-           *  hostname1:<can include non-standard ssh port>
-           *   hostname2=<12.34.55.77> ALIAS
-           *  [loadbalancers]
-           *    lb.hostname3
-           *  [local]
-           *  control ansible_connection=local  (This specifies no SSH)
-
+    
 6. run ansible command to list host in INVENTORY
        1.  ansible -i <file name> --list-hosts all
 
 7. No longer use "-i" option, specify location inventory file in ansible CONFIG 
-     1. NOTE -- Order of CONFIG file search
+     1. NOTE: Order of CONFIG file search
                        - ANSIBLE_CONFIG (env variable set)
                        - ansible.cfg  (in the current directory)
                        - ~/.ansible.cfg   (in the home dir)
                        - /etc/ansible/ansible.cfg  (used globally)
-     2.  STEP 1 -- CREATE A NEW FILE  ansible.cfg
+     2.  STEP 1: CREATE A NEW FILE  ansible.cfg
                        -- FORMAT EXAMPLE
                           [defaults]
                           inventory = ./hosts-dev
-      3. -- STEP 2 -- TEST new ansible.cfg is referenced
+      3. STEP 2: TEST new ansible.cfg is referenced
                           ansible_files ansible --list-host all
                           ansible --list-hosts "webservers[1]"    <--- use index location :)
 
@@ -61,14 +53,14 @@ FORMAT:  ansisble options <host-pattern>
 EXAMPLE: ansible -m ping alll
 
 1.  Update  ansible.cfg add ssh users - add following parameters
-      remote_user = ec2-user
-      private_key_file = ansible-robo-pair.pem
-      host_jey_checking = False
-      interpreter_python=auto_silent ; # HIDES WARNINGS
+      1. remote_user = ec2-user
+      2. private_key_file = ansible-robo-pair.pem
+      3. host_jey_checking = False
+      4. interpreter_python=auto_silent ; # HIDES WARNINGS
 
-     ---- RUN commands below  ---
-             ansible -m ping "webserver[0]"
-              ansible -m shell -a "uname" webservers:loadbalancers
+2.  RUN commands below  ---
+            ansible -m ping "webserver[0]"
+            ansible -m shell -a "uname" webservers:loadbalancers
 
 
 # PLAYBOOK (YAML syntax)
