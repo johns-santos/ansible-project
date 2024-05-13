@@ -68,17 +68,17 @@ EXAMPLE: ansible -m ping alll
 Example of playbook (Task are grouped  and are in logical order)
 ----------------------------------------------------------------------------------------- 
 -UPDATE
-     • update all packages
-      • patching needed
+     1. update all packages
+     2. patching needed
 - INSTALL SOMETHING
-       • install  service 1
-        • install service 2
+     1.  install  service 1
+     2. install service 2
 -CONFIGURE
-       • setup services
-       • update config files
-       • restart services
+     1.  setup services
+     2.  update config files
+     3.  restart services
 -CHECK STATUS
-        • Ensure up status
+      1.  Ensure up status
 
 Example of playbook yml format:
 ----------------------------------------------------------------------------------------- 
