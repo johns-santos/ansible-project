@@ -16,41 +16,41 @@ Become familiar with ansible configuration and playbooks.
 1. Create AWS key pair and download to workstation
 
 2. move keypair and change permissions
-   ➜  ~ mv Downloads/ansible-robo-pair.pem ~/.ssh 
-  ➜  ~ chmod 400 ~/.ssh/ansible-robo-pair.pem
+    1. mv Downloads/ansible-robo-pair.pem ~/.ssh 
+    2. chmod 400 ~/.ssh/ansible-robo-pair.pem
 
 3. Go to AWS Cloud Formation and create new stack 
-      ---- upload template to S3 and navigate to yaml file and create.
-      ---- yml contains 3  EC2 with elastic IP.
+      1. upload template to S3 and navigate to yaml file and create.
+      2. yml contains 3  EC2 with elastic IP.
 
 4.  Log onto ansible controller and install ansible.
-      --- ➜  project pip install ansible
+      1. project pip install ansible
 
 5. Create a ansible INVENTORY file (this is a static list, can be dynamic)
-       ---- Default location of file  = /etc/ansible/hosts (can use "-i" to use another.
-       ----  FORMAT is as followed:
-              [webserver]
-              hostname1:<can include non-standard ssh port>
-              hostname2=<12.34.55.77> ALIAS
-             [loadbalancers]
-              lb.hostname3
-             [local]
-             control ansible_connection=local  (This specifies no SSH)
+       1. Default location of file  = /etc/ansible/hosts (can use "-i" to use another.
+       1. FORMAT is as followed:
+           *   [webserver]
+           *  hostname1:<can include non-standard ssh port>
+           *   hostname2=<12.34.55.77> ALIAS
+           *  [loadbalancers]
+           *    lb.hostname3
+           *  [local]
+           *  control ansible_connection=local  (This specifies no SSH)
 
 6. run ansible command to list host in INVENTORY
-       ------>  ansible -i <file name> --list-hosts all
+       1.  ansible -i <file name> --list-hosts all
 
 7. No longer use "-i" option, specify location inventory file in ansible CONFIG 
-     ---NOTE -- Order of CONFIG file search
+     1. NOTE -- Order of CONFIG file search
                        - ANSIBLE_CONFIG (env variable set)
                        - ansible.cfg  (in the current directory)
                        - ~/.ansible.cfg   (in the home dir)
                        - /etc/ansible/ansible.cfg  (used globally)
-       -- STEP 1 -- CREATE A NEW FILE  ansible.cfg
+     2.  STEP 1 -- CREATE A NEW FILE  ansible.cfg
                        -- FORMAT EXAMPLE
                           [defaults]
                           inventory = ./hosts-dev
-         -- STEP 2 -- TEST new ansible.cfg is referenced
+      3. -- STEP 2 -- TEST new ansible.cfg is referenced
                           ansible_files ansible --list-host all
                           ansible --list-hosts "webservers[1]"    <--- use index location :)
 
