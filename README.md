@@ -6,7 +6,8 @@ AWS account
 two web servers (app1, app2)
 One loadbalancer (lb1)
 
-Objective:
+Objective: 
+Build a two tier system using two webservers, one loadbalancer and a ansible controller.
 Become familiar with ansible configuration and playbooks.
 
 
